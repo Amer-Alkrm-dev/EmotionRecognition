@@ -8,6 +8,8 @@ function EmotionRecognition() {
   const [image, setImage] = useState();
   const [emotions, setEmotions] = useState();
   const navigate = useNavigate(); // Initialize navigate
+  const apiKey = process.env.api_key;
+
 
   const handleSignout = async (e) => {
     e.preventDefault();
@@ -30,10 +32,11 @@ function EmotionRecognition() {
 
   const handleEmotionRecognition = async () => {
     try {
-      const response = await fetch("http://0.0.0.0:5555/emotion_recognition", {
+      const response = await fetch("https://5mfwbccs76.execute-api.us-east-1.amazonaws.com/dev/recognize-emotion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "x-api-key": apiKey
         },
         body: JSON.stringify({ data: image }),
       });
