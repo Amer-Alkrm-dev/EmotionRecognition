@@ -32,27 +32,23 @@ function EmotionRecognition() {
 
   const handleEmotionRecognition = async () => {
     try {
-      const response = await fetch("https://5mfwbccs76.execute-api.us-east-1.amazonaws.com/dev/recognize-emotion", {
+      const response = await fetch("https://hv8fvab9uj.execute-api.us-east-1.amazonaws.com/dev2/recognize-emotion", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-api-key": apiKey
-        },
         body: JSON.stringify({ data: image }),
       });
       if (!response.ok) {
         throw new Error("Error encountered.");
       }
-      const data = await response.json();
+      const json_response = await response.json();
 
       // Extract the base64-encoded image data from the JSON response
-      const base64Image = data.image;
+      const base64Image = json_response.body.image;
 
       // Create a data URI for the image
       const imageURI = `data:image/jpeg;base64,${base64Image}`;
 
       setImage(imageURI);
-      setEmotions(data.emotions);
+      setEmotions(json_response.body.emotions);
     } catch (error) {
       console.error("Error:", error);
     }
