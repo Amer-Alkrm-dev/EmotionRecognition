@@ -1,0 +1,65 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(7px + 2vmin);
+  color: white;
+}
+
+.file-input {
+  display: none; /* Hide the default input appearance */
+}
+
+.custom-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 20px 20px;
+}
+
+/* Optional hover effect */
+.custom-button:hover {
+  background-color: #0056b3;
+}
+
+.center-content {
+  justify-content: flex-start; /* Align content at the top */
+  padding: 12px; /* Adding padding to mimic a header */
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.centered-image {
+  max-width: 60%; /* Set maximum width to 60% of the page */
+  max-height: 90vh; /* Set maximum height to 80% of the viewport height */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+/* Add this CSS to your existing CSS file or include it in a separate file and link it in your HTML */
+#signout-link {
+  position: fixed;
+  bottom: 17px;
+  right: 17px;
+  color: #fff; /* Set the link color to blue */
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline; /* Underline the link to indicate it's clickable */
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+#signout-link:hover {
+  text-decoration: none; /* Remove underline on hover (optional) */
+}
