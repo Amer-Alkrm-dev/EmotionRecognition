@@ -8,8 +8,7 @@ function EmotionRecognition() {
   const [image, setImage] = useState();
   const [emotions, setEmotions] = useState();
   const navigate = useNavigate(); // Initialize navigate
-  const apiKey = process.env.api_key;
-
+  const apiKey = process.env.api_key || "";
 
   const handleSignout = async (e) => {
     e.preventDefault();
@@ -32,23 +31,30 @@ function EmotionRecognition() {
 
   const handleEmotionRecognition = async () => {
     try {
-      const response = await fetch("https://hv8fvab9uj.execute-api.us-east-1.amazonaws.com/dev2/recognize-emotion", {
-        method: "POST",
-        body: JSON.stringify({ data: image }),
-      });
+      console.log("Calling API gateway to recognize the emotions.");
+      const response = await fetch(
+        "https://hv8fvab9uj.execute-api.us-east-1.amazonaws.com/dev2/recognize-emotion",
+        {
+          method: "POST",
+          headers: { "x-api-key": apiKey },
+          body: JSON.stringify({ data: image }),
+        }
+      );
       if (!response.ok) {
-        throw new Error("Error encountered.");
+        throw new Error(
+          "Call to API gateway failed, response: " + (await response.json())
+        );
       }
+      console.log("Emotions recognized.");
       const json_response = await response.json();
 
       // Extract the base64-encoded image data from the JSON response
-      const base64Image = json_response.body.image;
-
+      const base64Image = json_response.image;
       // Create a data URI for the image
       const imageURI = `data:image/jpeg;base64,${base64Image}`;
 
       setImage(imageURI);
-      setEmotions(json_response.body.emotions);
+      setEmotions(json_response.emotions);
     } catch (error) {
       console.error("Error:", error);
     }
