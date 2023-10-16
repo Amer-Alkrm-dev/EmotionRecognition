@@ -50,6 +50,12 @@ function EmotionRecognition() {
 
       // Extract the base64-encoded image data from the JSON response
       const base64Image = json_response.image;
+      if (!base64Image) {
+        throw new Error(
+          "Call to API gateway failed, response: " + (await response.text())
+        );
+      }
+
       // Create a data URI for the image
       const imageURI = `data:image/jpeg;base64,${base64Image}`;
 
