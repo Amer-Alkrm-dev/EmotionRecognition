@@ -8,7 +8,7 @@ function EmotionRecognition() {
   const [image, setImage] = useState();
   const [emotions, setEmotions] = useState();
   const navigate = useNavigate(); // Initialize navigate
-  const apiKey = process.env.api_key || "";
+  const API_KEY = process.env.REACT_APP_API_KEY || "";
 
   const handleSignout = async (e) => {
     e.preventDefault();
@@ -36,13 +36,13 @@ function EmotionRecognition() {
         "https://hv8fvab9uj.execute-api.us-east-1.amazonaws.com/dev2/recognize-emotion",
         {
           method: "POST",
-          headers: { "x-api-key": apiKey },
+          headers: { "x-api-key": API_KEY },
           body: JSON.stringify({ data: image }),
         }
       );
       if (!response.ok) {
         throw new Error(
-          "Call to API gateway failed, response: " + (await response.json())
+          "Call to API gateway failed, response: " + (await response.text())
         );
       }
       console.log("Emotions recognized.");
