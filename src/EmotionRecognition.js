@@ -9,6 +9,8 @@ function EmotionRecognition() {
   const [emotions, setEmotions] = useState();
   const navigate = useNavigate(); // Initialize navigate
   const API_KEY = process.env.REACT_APP_API_KEY || "";
+  const GATEWAY_URL = process.env.REACT_APP_API_GATEWAY_URL || "";
+
 
   const handleSignout = async (e) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ function EmotionRecognition() {
     try {
       console.log("Calling API gateway to recognize the emotions.");
       const response = await fetch(
-        "https://hv8fvab9uj.execute-api.us-east-1.amazonaws.com/dev2/recognize-emotion",
+        GATEWAY_URL,
         {
           method: "POST",
           headers: { "x-api-key": API_KEY },
