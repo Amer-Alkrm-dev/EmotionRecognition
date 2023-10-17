@@ -54,7 +54,7 @@ function EmotionRecognition() {
       const base64Image = json_response.image;
       if (!base64Image) {
         throw new Error(
-          "Call to API gateway failed, response: " + (await response.text())
+          "Call to API gateway failed, response: " + (json_response)
         );
       }
 

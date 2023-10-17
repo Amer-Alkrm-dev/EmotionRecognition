@@ -1,4 +1,7 @@
+const USER_POOL_ID = process.env.REACT_APP_USER_POOL || "";
+const POOL_CLIENT = process.env.REACT_APP_POOL_CLIENT || "";
+
 export const cognitoConfig = {
-    UserPoolId: "us-east-1_wyfpBvIEt",
-    ClientId: "607mlsdgn8bkn1a46qnh78b9s4"
+    UserPoolId: USER_POOL_ID,
+    ClientId: POOL_CLIENT
   }
